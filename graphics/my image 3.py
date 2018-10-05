@@ -95,7 +95,6 @@ def draw_picture():
     draw_house()
     draw_boat()
 
-
 draw_picture()
 
 window.getMouse()
