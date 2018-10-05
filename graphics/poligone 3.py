@@ -8,7 +8,6 @@ window.setBackground("skyblue")
 
 
 def draw_nature():
-
     sea = gr.Line(gr.Point(0, 250), gr.Point(400, 250))
     sea.setWidth(200)
     sea.setOutline('deepskyblue')
