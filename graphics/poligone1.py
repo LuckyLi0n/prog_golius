@@ -7,7 +7,6 @@ sea = gr.Line(gr.Point(0, 250), gr.Point(400, 250))
 sea.setWidth(200)
 sea.setOutline('deepskyblue')
 
-
 island = gr.Circle(gr.Point(200, 1175), 900)
 island.setFill('gold')
 island.setOutline('gold')
@@ -77,8 +76,6 @@ stone = gr.Oval(gr.Point(30, 355), gr.Point(120, 320))
 stone.setFill('lightgray')
 stone.setOutline("lightgray")
 
-
-
 sea.draw(window)
 cloud1.draw(window)
 cloud2.draw(window)
@@ -97,9 +94,6 @@ windows.draw(window)
 line1.draw(window)
 line2.draw(window)
 stone.draw(window)
-
-
-
 
 window.getMouse()
 

@@ -3,17 +3,14 @@ import graphics as gr
 x = int(input('Введи X (лучше 40-70)облака1:'))
 y = int(input('Введи Y(лучше 30-55) облака1:'))
 
-
-
 window = gr.GraphWin("/", 400, 400)
 window.setBackground("skyblue")
 
-def draw_nature():
 
+def draw_nature():
     sea = gr.Line(gr.Point(0, 250), gr.Point(400, 250))
     sea.setWidth(200)
     sea.setOutline('deepskyblue')
-
 
     island = gr.Circle(gr.Point(200, 1175), 900)
     island.setFill('gold')
@@ -165,18 +162,12 @@ def draw_house():
     line1.draw(window)
     line2.draw(window)
 
-
-
 def draw_picture():
     draw_nature()
     draw_house()
     draw_boat()
 
 draw_picture()
-
-
-
-
 
 window.getMouse()
 
