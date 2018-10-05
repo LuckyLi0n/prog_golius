@@ -1,7 +1,7 @@
 import graphics as gr
 
 x = int(input('Введи X (40-70) облаков:'))
-y = int(input('Введи Y (30-55) облакаов:'))
+y = int(input('Введи Y (30-55) облаков:'))
 
 window = gr.GraphWin("/", 400, 400)
 window.setBackground("skyblue")
