@@ -39,7 +39,7 @@ boat = gr.Polygon(gr.Point(30, 225), gr.Point(150, 225), gr.Point(120, 260), gr.
 boat.setFill('Chocolate')
 boat.setOutline('Chocolate')
 
-boat1 = gr.Line(gr.Point(100, 150), gr.Point( 100, 225))
+boat1 = gr.Line(gr.Point(100, 150), gr.Point(100, 225))
 boat1.setWidth(2)
 boat1.setOutline('black')
 
@@ -52,7 +52,7 @@ sail2.setFill('white')
 sail2.setOutline('white')
 
 
-house = gr.Rectangle(gr.Point(220, 210), gr.Point(380,350))
+house = gr.Rectangle(gr.Point(220, 210), gr.Point(380, 350))
 house.setOutline('gray')
 house.setFill("gray")
 
@@ -60,7 +60,7 @@ roof = gr.Polygon(gr.Point(220, 210), gr.Point(300, 160), gr.Point(380, 210))
 roof.setFill('black')
 roof.setOutline('black')
 
-windows = gr.Rectangle(gr.Point(265, 250), gr.Point(335,310))
+windows = gr.Rectangle(gr.Point(265, 250), gr.Point(335, 310))
 windows.setFill('lightblue')
 windows.setOutline('black')
 

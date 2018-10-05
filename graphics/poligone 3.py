@@ -112,12 +112,13 @@ def draw_nature():
     island.draw(window)
     stone.draw(window)
 
+
 def draw_boat():
     boat = gr.Polygon(gr.Point(30, 225), gr.Point(150, 225), gr.Point(120, 260), gr.Point(60, 260))
     boat.setFill('Chocolate')
     boat.setOutline('Chocolate')
 
-    boat1 = gr.Line(gr.Point(100, 150), gr.Point( 100, 225))
+    boat1 = gr.Line(gr.Point(100, 150), gr.Point(100, 225))
     boat1.setWidth(2)
     boat1.setOutline('black')
 
@@ -134,9 +135,9 @@ def draw_boat():
     sail1.draw(window)
     sail2.draw(window)
 
-def draw_house():
 
-    house = gr.Rectangle(gr.Point(220, 210), gr.Point(380,350))
+def draw_house():
+    house = gr.Rectangle(gr.Point(220, 210), gr.Point(380, 350))
     house.setOutline('gray')
     house.setFill("gray")
 
@@ -144,7 +145,7 @@ def draw_house():
     roof.setFill('black')
     roof.setOutline('black')
 
-    windows = gr.Rectangle(gr.Point(265, 250), gr.Point(335,310))
+    windows = gr.Rectangle(gr.Point(265, 250), gr.Point(335, 310))
     windows.setFill('lightblue')
     windows.setOutline('black')
 
@@ -162,10 +163,12 @@ def draw_house():
     line1.draw(window)
     line2.draw(window)
 
+
 def draw_picture():
     draw_nature()
     draw_house()
     draw_boat()
+
 
 draw_picture()
 
