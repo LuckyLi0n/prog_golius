@@ -1,7 +1,8 @@
 import graphics as gr
+import random
 
-x = int(input('Введи X (40-70) облаков:'))
-y = int(input('Введи Y (30-55) облаков:'))
+x = random.randint(39, 70)
+y = random.randint(20, 45)
 
 window = gr.GraphWin("/", 400, 400)
 window.setBackground("skyblue")
