@@ -25,89 +25,18 @@ def draw_nature():
     sun.setFill('yellow')
     sun.setOutline('yellow')
 
-    def draw_cloud_1():
-        cloud1 = gr.Circle(gr.Point(x, y), 20)
-        cloud1.setFill('white')
-        cloud1.setOutline('white')
+    def draw_cloud(k, m):
+        circle_centers = [(k, m), (k + 20, m), (k - 15, m + 20),
+                          (k + 10, m + 20), (k + 35, m + 20)]
+        for k, m in circle_centers:
+            circle = gr.Circle(gr.Point(k, m), 20)
+            circle.setFill('white')
+            circle.setOutline('white')
+            circle.draw(window)
 
-        cloud2 = gr.Circle(gr.Point(x+20, y), 20)
-        cloud2.setFill('white')
-        cloud2.setOutline('white')
+    for q, w in [(40, 30), (120, 80), (230, 30)]:
+        draw_cloud(q, w)
 
-        cloud3 = gr.Circle(gr.Point(x-15, y+20), 20)
-        cloud3.setFill('white')
-        cloud3.setOutline('white')
-
-        cloud4 = gr.Circle(gr.Point(x+10, y+20), 20)
-        cloud4.setFill('white')
-        cloud4.setOutline('white')
-
-        cloud5 = gr.Circle(gr.Point(x+35, y+20), 20)
-        cloud5.setFill('white')
-        cloud5.setOutline('white')
-
-        cloud1.draw(window)
-        cloud2.draw(window)
-        cloud3.draw(window)
-        cloud4.draw(window)
-        cloud5.draw(window)
-
-    def draw_cloud_2():
-        cloud6 = gr.Circle(gr.Point(x+80, y+50), 20)
-        cloud6.setFill('white')
-        cloud6.setOutline('white')
-
-        cloud7 = gr.Circle(gr.Point(x+100, y+50), 20)
-        cloud7.setFill('white')
-        cloud7.setOutline('white')
-
-        cloud8 = gr.Circle(gr.Point(x+65, y+70), 20)
-        cloud8.setFill('white')
-        cloud8.setOutline('white')
-
-        cloud9 = gr.Circle(gr.Point(x+90, y+70), 20)
-        cloud9.setFill('white')
-        cloud9.setOutline('white')
-
-        cloud10 = gr.Circle(gr.Point(x+115, y+70), 20)
-        cloud10.setFill('white')
-        cloud10.setOutline('white')
-
-        cloud6.draw(window)
-        cloud7.draw(window)
-        cloud8.draw(window)
-        cloud9.draw(window)
-        cloud10.draw(window)
-
-    def draw_cloud_3():
-        cloud11 = gr.Circle(gr.Point(x+190, y), 20)
-        cloud11.setFill('white')
-        cloud11.setOutline('white')
-
-        cloud12 = gr.Circle(gr.Point(x+210, y), 20)
-        cloud12.setFill('white')
-        cloud12.setOutline('white')
-
-        cloud13 = gr.Circle(gr.Point(x+175, y+20), 20)
-        cloud13.setFill('white')
-        cloud13.setOutline('white')
-
-        cloud14 = gr.Circle(gr.Point(x+200, y+20), 20)
-        cloud14.setFill('white')
-        cloud14.setOutline('white')
-
-        cloud15 = gr.Circle(gr.Point(x+225, y+20), 20)
-        cloud15.setFill('white')
-        cloud15.setOutline('white')
-
-        cloud11.draw(window)
-        cloud12.draw(window)
-        cloud13.draw(window)
-        cloud14.draw(window)
-        cloud15.draw(window)
-    draw_cloud_1()
-    draw_cloud_2()
-    draw_cloud_3()
     sea.draw(window)
     sun.draw(window)
     island.draw(window)
