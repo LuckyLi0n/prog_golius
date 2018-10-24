@@ -79,19 +79,15 @@ def draw_house():
     windows.setFill('lightblue')
     windows.setOutline('black')
 
-    line1 = gr.Line(gr.Point(300, 250), gr.Point(300, 310))
-    line1.setWidth(1)
-    line1.setOutline('black')
-
-    line2 = gr.Line(gr.Point(265, 280), gr.Point(335, 280))
-    line2.setWidth(1)
-    line2.setOutline('black')
-
     house.draw(window)
     roof.draw(window)
     windows.draw(window)
-    line1.draw(window)
-    line2.draw(window)
+
+    for q, w, e, r in [(300, 250, 300, 310), (265, 280, 335, 280)]:
+        line = gr.Line(gr.Point(q, w), gr.Point(e, r))
+        line.setWidth(1)
+        line.setOutline('black')
+        line.draw(window)
 
 
 def draw_picture():
