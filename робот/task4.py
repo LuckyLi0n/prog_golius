@@ -2,6 +2,7 @@ import robot
 r = robot.rmap()
 r.lm('task4')
 
+
 def task():
     while r.fl():
         r.lt()
@@ -14,4 +15,6 @@ def task():
             r.pt()
         r.lt(5)
         r.dn(3)
+
+
 r.start(task)

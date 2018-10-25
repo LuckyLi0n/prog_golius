@@ -2,6 +2,7 @@ import robot
 r = robot.rmap()
 r.lm('task1')
 
+
 def task():
     r.up()
     r.rt()
@@ -10,5 +11,6 @@ def task():
     r.up()
     r.rt()
     r.dn()
-r.start(task)
 
+
+r.start(task)

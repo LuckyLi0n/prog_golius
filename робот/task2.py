@@ -2,6 +2,7 @@ import robot
 r = robot.rmap()
 r.lm('task2')
 
+
 def task():
     for x in range(7):
         r.up()
@@ -15,4 +16,6 @@ def task():
         r.rt()
     r.up()
     r.pt()
+
+
 r.start(task)

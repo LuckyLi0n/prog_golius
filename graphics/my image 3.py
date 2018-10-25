@@ -1,7 +1,14 @@
 import graphics as gr
+import time
+
 
 window = gr.GraphWin("/", 400, 400)
 window.setBackground("skyblue")
+
+
+def main():
+    window.getMouse()
+    window.close()
 
 
 def draw_nature():
@@ -21,45 +28,22 @@ def draw_nature():
     sun.setFill('yellow')
     sun.setOutline('yellow')
 
-    def draw_cloud(x, y):
-        cloud_color = "white"
-        circle_centers = [(x, y), (x + 20, y), (x - 15, y + 20),
-                          (x + 10, y + 20), (x + 35, y + 20)]
-        for x, y in circle_centers:
-            circle = gr.Circle(gr.Point(x, y), 20)
+    def draw_cloud(k, m):
+        circle_centers = [(k, m), (k + 20, m), (k - 15, m + 20),
+                          (k + 10, m + 20), (k + 35, m + 20)]
+        for k, m in circle_centers:
+            circle = gr.Circle(gr.Point(k, m), 20)
             circle.setFill('white')
             circle.setOutline('white')
             circle.draw(window)
 
-    for x, y in [(40, 30), (120, 80), (230, 30)]:
-        draw_cloud(x, y)
+    for q, w in [(40, 30), (120, 80), (230, 30)]:
+        draw_cloud(q, w)
+
     sea.draw(window)
     sun.draw(window)
     island.draw(window)
     stone.draw(window)
-
-
-def draw_boat():
-    boat = gr.Polygon(gr.Point(30, 225), gr.Point(150, 225), gr.Point(120, 260), gr.Point(60, 260))
-    boat.setFill('Chocolate')
-    boat.setOutline('Chocolate')
-
-    boat1 = gr.Line(gr.Point(100, 150), gr.Point(100, 225))
-    boat1.setWidth(2)
-    boat1.setOutline('black')
-
-    sail1 = gr.Polygon(gr.Point(102, 145), gr.Point(102, 220), gr.Point(150, 220))
-    sail1.setFill('white')
-    sail1.setOutline('white')
-
-    sail2 = gr.Polygon(gr.Point(60, 215), gr.Point(98, 160), gr.Point(98, 215))
-    sail2.setFill('white')
-    sail2.setOutline('white')
-
-    boat.draw(window)
-    boat1.draw(window)
-    sail1.draw(window)
-    sail2.draw(window)
 
 
 def draw_house():
@@ -75,28 +59,69 @@ def draw_house():
     windows.setFill('lightblue')
     windows.setOutline('black')
 
-    line1 = gr.Line(gr.Point(300, 250), gr.Point(300, 310))
-    line1.setWidth(1)
-    line1.setOutline('black')
-
-    line2 = gr.Line(gr.Point(265, 280), gr.Point(335, 280))
-    line2.setWidth(1)
-    line2.setOutline('black')
-
     house.draw(window)
     roof.draw(window)
     windows.draw(window)
-    line1.draw(window)
-    line2.draw(window)
+
+    for q, w, e, r in [(300, 250, 300, 310), (265, 280, 335, 280)]:
+        line = gr.Line(gr.Point(q, w), gr.Point(e, r))
+        line.setWidth(1)
+        line.setOutline('black')
+        line.draw(window)
+
+
+def draw_boat():
+    global boat, x
+    x = 106
+    boat = gr.Polygon(gr.Point(x-72, x+123), gr.Point(x+48, x+123), gr.Point(x+18, x+158), gr.Point(x-42, x+158))
+    boat.setFill('Chocolate')
+    boat.setOutline('Chocolate')
+    boat.draw(window)
+
+
+def draw_mast():
+    global mast
+    mast = gr.Line(gr.Point(x-2, x+48), gr.Point(x-2, x+123))
+    mast.setWidth(2)
+    mast.setOutline('black')
+    mast.draw(window)
+
+
+def draw_sails():
+    global sail1, sail2
+    sail1 = gr.Polygon(gr.Point(x, x+43), gr.Point(x, x+118), gr.Point(x+48, x+118))
+    sail1.setFill('white')
+    sail1.setOutline('white')
+
+    sail2 = gr.Polygon(gr.Point(x-42, x+113), gr.Point(x-4, x+58), gr.Point(x-4, x+113))
+    sail2.setFill('white')
+    sail2.setOutline('white')
+
+    sail1.draw(window)
+    sail2.draw(window)
+
+
+def draw_all_boat():
+    draw_boat()
+    draw_mast()
+    draw_sails()
 
 
 def draw_picture():
     draw_nature()
+    draw_all_boat()
     draw_house()
-    draw_boat()
+
 
 draw_picture()
 
-window.getMouse()
 
-window.close()
+for i in range(390):
+    sail1.move(1, 0)
+    sail2.move(1, 0)
+    mast.move(1, 0)
+    boat.move(1, 0)
+    time.sleep(0.1)
+
+
+main()

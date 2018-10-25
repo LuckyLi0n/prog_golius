@@ -10,7 +10,7 @@ i = 0
 
 
 def tick():
-    global x, y,i
+    global x, y, i
     x = random.randint(1, 500)
     y = random.randint(1, 500)
     red = random.randint(0, 255)
@@ -21,7 +21,6 @@ def tick():
     canv.create_text(20, 300, text=i, font='Arial 15')
     root.after(1200, tick)
     canv.create_oval(x, y, x+60, y+60, fill=gr.color_rgb(red, blue, gree))
-
 
 
 def click(event):
@@ -38,6 +37,7 @@ def click(event):
         canv.create_text(20, 300, text=i, font='Arial 15')
     x = 1000
     y = 1000
+
 
 canv.bind('<Button-1>', click)
 root.after_idle(tick)

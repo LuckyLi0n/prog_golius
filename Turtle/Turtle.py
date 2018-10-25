@@ -1,5 +1,7 @@
 import turtle
 turtle.shape("turtle")
+
+
 def draw(l, n):
     if n == 0:
         turtle.left(180)
@@ -17,5 +19,6 @@ def draw(l, n):
     turtle.forward(x)
     turtle.left(180)
     turtle.forward(l)
+
 
 draw(400, 5)
