@@ -52,18 +52,14 @@ def draw_boat():
     boat1.setWidth(2)
     boat1.setOutline('black')
 
-    sail1 = gr.Polygon(gr.Point(102, 145), gr.Point(102, 220), gr.Point(150, 220))
-    sail1.setFill('white')
-    sail1.setOutline('white')
-
-    sail2 = gr.Polygon(gr.Point(60, 215), gr.Point(98, 160), gr.Point(98, 215))
-    sail2.setFill('white')
-    sail2.setOutline('white')
-
     boat.draw(window)
     boat1.draw(window)
-    sail1.draw(window)
-    sail2.draw(window)
+
+    for c, v, b, n, m, u in [(102, 145, 102, 220, 150, 220), (60, 215, 98, 160, 98, 215)]:
+        sails = gr.Polygon(gr.Point(c, v), gr.Point(b, n), gr.Point(m, u))
+        sails.setFill('white')
+        sails.setOutline('white')
+        sails.draw(window)
 
 
 def draw_house():
