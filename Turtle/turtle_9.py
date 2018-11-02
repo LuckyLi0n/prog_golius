@@ -7,7 +7,7 @@ k = 3
 o = 18
 for aa in range(11):
     turtle.penup()
-    turtle.goto(x,y)
+    turtle.goto(x, y)
     turtle.pendown()
     for i in range(k):
         turtle.forward(a)

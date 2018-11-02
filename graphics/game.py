@@ -15,12 +15,12 @@ def tick():
     y = random.randint(1, 500)
     red = random.randint(0, 255)
     blue = random.randint(0, 255)
-    gree = random.randint(0, 255)
+    green = random.randint(0, 255)
     canv.delete(ALL)
     i -= 1
     canv.create_text(20, 300, text=i, font='Arial 15')
     root.after(1200, tick)
-    canv.create_oval(x, y, x+60, y+60, fill=gr.color_rgb(red, blue, gree))
+    canv.create_oval(x, y, x+60, y+60, fill=gr.color_rgb(red, blue, green))
 
 
 def click(event):
@@ -32,7 +32,6 @@ def click(event):
         canv.create_text(20, 300, text=i, font='Arial 15')
         i += 2
     else:
-
         canv.delete(ALL)
         canv.create_text(20, 300, text=i, font='Arial 15')
     x = 1000
