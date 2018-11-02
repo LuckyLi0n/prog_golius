@@ -54,13 +54,13 @@ def time_handler():
         freeze = True
         return
     tick_handler()
-    sleep_dt = 1100 - 100*speed
+    sleep_dt = 700 - 69*speed
     root.after(sleep_dt, time_handler)
 
 
 def unfreezer():
     global freeze
-    if freeze == True:
+    if freeze is True:
         speed = speed_scale.get()
         if speed != 0:
             freeze = False
