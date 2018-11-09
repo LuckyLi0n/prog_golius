@@ -58,7 +58,7 @@ def time_handler():
     root.after(sleep_dt, time_handler)
 
 
-def unfreezer():
+def unfreezer(event):
     global freeze
     if freeze is True:
         speed = speed_scale.get()
@@ -72,7 +72,7 @@ speed_scale = Scale(root, orient=HORIZONTAL, length=300,
 speed_scale.pack()
 
 # Скорость = 1
-speed_scale.set(1)
+speed_scale.set(1);
 freeze = False
 
 root.after(10, time_handler)
