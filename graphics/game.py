@@ -24,9 +24,9 @@ def tick():
 
 def click(event):
     global score, x, y
-    a = event.x
-    b = event.y
-    if a in range(x, x+60) and b in range(y, y+60):
+    ball_x = event.x
+    ball_y = event.y
+    if ball_x in range(x, x+60) and ball_y in range(y, y+60):
         canv.delete(ALL)
         canv.create_text(20, 300, text=score, font='Arial 15')
         score += 1
