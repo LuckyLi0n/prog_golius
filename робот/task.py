@@ -45,4 +45,6 @@ def task():
     for b in range(x//2+1):
         r.pt()
         r.rt()
+
+
 r.start(task)
