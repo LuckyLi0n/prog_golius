@@ -25,17 +25,18 @@ def draw_nature():
     sun.setFill('yellow')
     sun.setOutline('yellow')
 
-    def draw_cloud(k, m):
-        circle_centers = [(k, m), (k + 20, m), (k - 15, m + 20),
-                          (k + 10, m + 20), (k + 35, m + 20)]
-        for k, m in circle_centers:
-            circle = gr.Circle(gr.Point(k, m), 20)
+    def draw_cloud(centre_circle_x, centre_circle_y):
+        circle_centers = [(centre_circle_x, centre_circle_y), (centre_circle_x + 20, centre_circle_y),
+                          (centre_circle_x - 15, centre_circle_y + 20),
+                          (centre_circle_x + 10, centre_circle_y + 20), (centre_circle_x + 35, centre_circle_y + 20)]
+        for centre_circle_x, centre_circle_y in circle_centers:
+            circle = gr.Circle(gr.Point(centre_circle_x, centre_circle_y), 20)
             circle.setFill('white')
             circle.setOutline('white')
             circle.draw(window)
 
-    for q, w in [(40, 30), (120, 80), (230, 30)]:
-        draw_cloud(q, w)
+    for circles_x, circles_y in [(40, 30), (120, 80), (230, 30)]:
+        draw_cloud(circles_x, circles_y)
 
     sea.draw(window)
     sun.draw(window)
@@ -54,6 +55,25 @@ def draw_boat():
 
     boat.draw(window)
     boat1.draw(window)
+
+    def draw_sails(centre_circle_x, centre_circle_y):
+        circle_centers = [(centre_circle_x, centre_circle_y), (centre_circle_x + 20, centre_circle_y),
+                          (centre_circle_x - 15, centre_circle_y + 20),
+                          (centre_circle_x + 10, centre_circle_y + 20), (centre_circle_x + 35, centre_circle_y + 20)]
+        for centre_circle_x, centre_circle_y in circle_centers:
+            circle = gr.Circle(gr.Point(centre_circle_x, centre_circle_y), 20)
+            circle.setFill('white')
+            circle.setOutline('white')
+            circle.draw(window)
+
+    for circles_x, circles_y in [(40, 30), (120, 80), (230, 30)]:
+        draw_cloud(circles_x, circles_y)
+
+    for c, v, b, n, m, u in [(102, 145, 102, 220, 150, 220), (60, 215, 98, 160, 98, 215)]:
+        sails = gr.Polygon(gr.Point(c, v), gr.Point(c, v + 75), gr.Point(c + 48, v + 75))
+        sails.setFill('white')
+        sails.setOutline('white')
+        sails.draw(window)
 
     for c, v, b, n, m, u in [(102, 145, 102, 220, 150, 220), (60, 215, 98, 160, 98, 215)]:
         sails = gr.Polygon(gr.Point(c, v), gr.Point(b, n), gr.Point(m, u))
@@ -79,8 +99,8 @@ def draw_house():
     roof.draw(window)
     windows.draw(window)
 
-    for q, w, e, r in [(300, 250, 300, 310), (265, 280, 335, 280)]:
-        line = gr.Line(gr.Point(q, w), gr.Point(e, r))
+    for start_line_x, start_line_y, end_line_x, end_line_y in [(300, 250, 300, 310), (265, 280, 335, 280)]:
+        line = gr.Line(gr.Point(start_line_x, start_line_y), gr.Point(end_line_x, end_line_y))
         line.setWidth(1)
         line.setOutline('black')
         line.draw(window)
