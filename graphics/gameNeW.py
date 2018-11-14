@@ -14,7 +14,8 @@ gree = random.randint(0, 255)
 global ball, x, y, dx, dy
 
 balls = []
-for x, y, dx, dy in [(60, 60, 2, 3), (100, 200, 3, 7), (250, 100, -5, 3), (500, 500, 3, 4), (300, 300, -2, -3)]:
+for x, y, dx, dy in [(60, 60, 2, 3), (100, 200, 3, 7),
+                     (250, 100, -5, 3), (500, 500, 3, 4), (300, 300, -2, -3)]:
     oval = canvas.create_oval(x, y, x + 60, y + 60, fill=gr.color_rgb(red, blue, gree))
     ball = [x, y, dx, dy, oval]
     balls.append(ball)

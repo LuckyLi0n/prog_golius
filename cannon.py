@@ -33,6 +33,9 @@ class Cannon:
         :return: None
         """
 
+        self.x = x
+        self.y = y
+
         pass  # TODO
 
     def fire(self, dt):

@@ -56,25 +56,6 @@ def draw_boat():
     boat.draw(window)
     boat1.draw(window)
 
-    def draw_sails(centre_circle_x, centre_circle_y):
-        circle_centers = [(centre_circle_x, centre_circle_y), (centre_circle_x + 20, centre_circle_y),
-                          (centre_circle_x - 15, centre_circle_y + 20),
-                          (centre_circle_x + 10, centre_circle_y + 20), (centre_circle_x + 35, centre_circle_y + 20)]
-        for centre_circle_x, centre_circle_y in circle_centers:
-            circle = gr.Circle(gr.Point(centre_circle_x, centre_circle_y), 20)
-            circle.setFill('white')
-            circle.setOutline('white')
-            circle.draw(window)
-
-    for circles_x, circles_y in [(40, 30), (120, 80), (230, 30)]:
-        draw_cloud(circles_x, circles_y)
-
-    for c, v, b, n, m, u in [(102, 145, 102, 220, 150, 220), (60, 215, 98, 160, 98, 215)]:
-        sails = gr.Polygon(gr.Point(c, v), gr.Point(c, v + 75), gr.Point(c + 48, v + 75))
-        sails.setFill('white')
-        sails.setOutline('white')
-        sails.draw(window)
-
     for c, v, b, n, m, u in [(102, 145, 102, 220, 150, 220), (60, 215, 98, 160, 98, 215)]:
         sails = gr.Polygon(gr.Point(c, v), gr.Point(b, n), gr.Point(m, u))
         sails.setFill('white')
