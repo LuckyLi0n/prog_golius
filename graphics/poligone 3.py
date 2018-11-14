@@ -56,7 +56,6 @@ def draw_boat():
     boat.draw(window)
     boat1.draw(window)
 
-
     for c, v, b, n, m, u in [(102, 145, 102, 220, 150, 220), (60, 215, 98, 160, 98, 215)]:
         sails = gr.Polygon(gr.Point(c, v), gr.Point(b, n), gr.Point(m, u))
         sails.setFill('white')
@@ -86,6 +85,7 @@ def draw_house():
         line.setWidth(1)
         line.setOutline('black')
         line.draw(window)
+
 
 def draw_picture():
     draw_nature()
