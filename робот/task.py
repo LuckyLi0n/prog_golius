@@ -1,7 +1,7 @@
 import robot
 r = robot.rmap()
 r.lm('task6')
-y = 56
+y = 45
 
 x = input("Введите ширину меньше 17")
 while True:
