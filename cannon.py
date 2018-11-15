@@ -39,15 +39,15 @@ class Ball:
 
     def move(self):
         if self.y <= 500:
-            self.dy -= 1.2
-            self.y -= self.dy
-            self.x += self.dx
-            self.dx *= 0.99
+            self.Vy -= 1.2
+            self.y -= self.Vy
+            self.x += self.Vx
+            self.Vx *= 0.99
             self.coord()
         else:
-            if self.dx**2+self.dy**2 > 10:
-                self.dy = -self.dy/2
-                self.dx = self.dx/2
+            if self.Vx**2+self.Vy**2 > 10:
+                self.Vy = -self.Vy/2
+                self.Vx = self.Vx/2
                 self.y = 499
             if self.live < 0:
                 balls.pop(balls.index(self))
@@ -55,7 +55,7 @@ class Ball:
             else:
                 self.live -= 1
         if self.x > 780:
-            self.dx = - self.dx/2
+            self.Vx = - self.Vx/2
             self.x = 779
 
     def collision(self, ball):
@@ -63,9 +63,6 @@ class Ball:
             return True
         else:
             return False
-        #a = abs(self.x + self.dx - ball.x)
-        #b = abs(self.y + self.dy - ball.y)
-        #return (a * a + b * b) ** 0.5 <= self.r + ball.r
 
 
 class Gun:
@@ -73,7 +70,7 @@ class Gun:
         self.power = 10
         self.on = 0
         self.angle = 1
-        self.cannon = canv.create_line(20, 450, 50, 420, width=7)
+        self.gun = canv.create_line(20, 450, 50, 420, width=7)
 
     def begin_shoot(self, event):
         self.on = 1
@@ -84,8 +81,8 @@ class Gun:
         new_ball = Ball()
         new_ball.r += 5
         self.angle = math.atan((event.y - new_ball.y) / (event.x - new_ball.x))
-        new_ball.dx = self.power * math.cos(self.angle)
-        new_ball.dy = -self.power * math.sin(self.angle)
+        new_ball.Vx = self.power * math.cos(self.angle)
+        new_ball.Vy = -self.power * math.sin(self.angle)
         balls.append(new_ball)
         self.on = 0
         self.power = 10
@@ -94,19 +91,19 @@ class Gun:
         if event:
             self.angle = math.atan((event.y - 450) / (event.x - 20))
         if self.on:
-            canv.itemconfig(self.cannon, fill='orange')
+            canv.itemconfig(self.gun, fill='orange')
         else:
-            canv.itemconfig(self.cannon, fill='black')
-        canv.coords(self.cannon, 20, 450, 20 + max(self.power, 20) * math.cos(self.angle),
+            canv.itemconfig(self.gun, fill='black')
+        canv.coords(self.gun, 20, 450, 20 + max(self.power, 20) * math.cos(self.angle),
                     450 + max(self.power, 20) * math.sin(self.angle))
 
     def power_up(self):
         if self.on:
             if self.power < 100:
                 self.power += 1
-            canv.itemconfig(self.cannon, fill='orange')
+            canv.itemconfig(self.gun, fill='orange')
         else:
-            canv.itemconfig(self.cannon, fill='black')
+            canv.itemconfig(self.gun, fill='black')
 
 
 class target():
@@ -131,7 +128,7 @@ class target():
         canv.itemconfig(self.point, text=self.points)
 
 
-tg = target()
+target_1 = target()
 screen = canv.create_text(400, 300, text='', font='28')
 gn = Gun()
 bullet = 0
@@ -139,21 +136,21 @@ balls = []
 
 
 def new_game(event=''):
-    global Gun, tg, screen, balls, bullet
-    tg.new_target()
+    global Gun, target_1, screen, balls, bullet
+    target_1.new_target()
     bullet = 0
     balls = []
     canv.bind('<Button-1>', gn.begin_shoot)
     canv.bind('<ButtonRelease-1>', gn.end_shoot)
     canv.bind('<Motion>', gn.targetting)
 
-    tg.live = 1
-    while balls or tg.live:
+    target_1.live = 1
+    while balls or target_1.live:
         for bal in balls:
             bal.move()
-            if bal.collision(tg) and tg.live:
-                tg.live = 0
-                tg.hit()
+            if bal.collision(target_1) and target_1.live:
+                target_1.live = 0
+                target_1.hit()
                 canv.bind('<Button-1>', '')
                 canv.bind('<ButtonRelease-1>', '')
                 canv.itemconfig(screen, text='Вы уничтожили цель за ' + str(bullet) + ' выстрелов')
