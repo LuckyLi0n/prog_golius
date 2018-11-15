@@ -1,24 +1,14 @@
 import turtle
-turtle.shape("turtle")
+t = turtle.Turtle()
+t.shape("turtle")
 
-
-def draw(l, n):
-    if n == 0:
-        turtle.left(180)
-        return
-
-    x = l / (n + 1)
-    for i in range(n):
-        turtle.forward(x)
-        turtle.left(45)
-        draw(0.5 * x * (n - i - 1), n - i - 1)
-        turtle.left(90)
-        draw(0.5 * x * (n - i - 1), n - i - 1)
-        turtle.right(135)
-
-    turtle.forward(x)
-    turtle.left(180)
-    turtle.forward(l)
-
-
-draw(400, 5)
+t.shape('turtle')
+t.forward(50)
+t.left(90)
+t.forward(50)
+t.left(90)
+t.forward(50)
+t.right(90)
+t.forward(50)
+t.right(90)
+t.forward(50)

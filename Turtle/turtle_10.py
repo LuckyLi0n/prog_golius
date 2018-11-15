@@ -1,10 +1,12 @@
 import turtle
-turtle.shape("turtle")
+t = turtle.Turtle()
+t.shape("turtle")
+
 for n in range(6):
     for i in range(360):
-        turtle.forward(1)
-        turtle.left(1)
-    for i in range(360):
-        turtle.forward(1)
-        turtle.right(1)
-    turtle.left(60)
+        t.forward(1)
+        t.left(1)
+    for k in range(360):
+        t.forward(1)
+        t.right(1)
+    t.left(60)
