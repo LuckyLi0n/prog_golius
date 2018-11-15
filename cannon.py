@@ -15,6 +15,8 @@ canv.pack(fill=BOTH, expand=1)
 colors = ['red', 'orange', 'yellow', 'green', 'blue', 'gray', 'black']
 
 
+canv.create_oval(0, 580, 80, 500, outline="pink", fill="pink")
+
 class Ball:
     """ Класс ball описывает мяч. """
 
@@ -91,19 +93,19 @@ class Gun:
         if event:
             self.angle = math.atan((event.y - 450) / (event.x - 20))
         if self.on:
-            canv.itemconfig(self.gun, fill='orange')
+            canv.itemconfig(self.gun, fill='purple')
         else:
-            canv.itemconfig(self.gun, fill='black')
-        canv.coords(self.gun, 20, 450, 20 + max(self.power, 20) * math.cos(self.angle),
-                    450 + max(self.power, 20) * math.sin(self.angle))
+            canv.itemconfig(self.gun, fill='purple')
+        canv.coords(self.gun, 60, 530, 60 + max(self.power, 20) * math.cos(self.angle),
+                    530 + max(self.power, 20) * math.sin(self.angle))
 
     def power_up(self):
         if self.on:
             if self.power < 100:
                 self.power += 1
-            canv.itemconfig(self.gun, fill='orange')
+            canv.itemconfig(self.gun, fill='purple')
         else:
-            canv.itemconfig(self.gun, fill='black')
+            canv.itemconfig(self.gun, fill='purple')
 
 
 class target():
