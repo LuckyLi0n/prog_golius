@@ -130,7 +130,7 @@ class target():
 
 target_1 = target()
 screen = canv.create_text(400, 300, text='', font='28')
-gn = Gun()
+gun_1 = Gun()
 bullet = 0
 balls = []
 
@@ -140,9 +140,9 @@ def new_game(event=''):
     target_1.new_target()
     bullet = 0
     balls = []
-    canv.bind('<Button-1>', gn.begin_shoot)
-    canv.bind('<ButtonRelease-1>', gn.end_shoot)
-    canv.bind('<Motion>', gn.targetting)
+    canv.bind('<Button-1>', gun_1.begin_shoot)
+    canv.bind('<ButtonRelease-1>', gun_1.end_shoot)
+    canv.bind('<Motion>', gun_1.targetting)
 
     target_1.live = 1
     while balls or target_1.live:
@@ -156,8 +156,8 @@ def new_game(event=''):
                 canv.itemconfig(screen, text='Вы уничтожили цель за ' + str(bullet) + ' выстрелов')
         canv.update()
         time.sleep(0.03)
-        gn.targetting()
-        gn.power_up()
+        gun_1.targetting()
+        gun_1.power_up()
     canv.itemconfig(screen, text='')
     canv.delete(Gun)
     root.after(750, new_game)
