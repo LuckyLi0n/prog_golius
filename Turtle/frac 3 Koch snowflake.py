@@ -30,4 +30,3 @@ def draw(size, n):
 
 
 snowflake()
-
