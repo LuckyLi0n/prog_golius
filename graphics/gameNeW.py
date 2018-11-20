@@ -7,44 +7,44 @@ root.geometry("600x600")
 canvas = Canvas(root)
 canvas.pack(fill=BOTH, expand=1)
 
-red = random.randint(0, 255)
-blue = random.randint(0, 255)
-gree = random.randint(0, 255)
-
-global ball, x, y, dx, dy
+width = 600
+height = 600
 
 balls = []
-for x, y, dx, dy in [(60, 60, 2, 3), (100, 200, 3, 7),
-                     (250, 100, -5, 3), (500, 500, 3, 4), (300, 300, -2, -3)]:
-    oval = canvas.create_oval(x, y, x + 60, y + 60, fill=gr.color_rgb(red, blue, gree))
-    ball = [x, y, dx, dy, oval]
+
+for number in range(10):
+    x = random.randint(40, 560)
+    y = random.randint(40, 560)
+    r = random.randint(15, 40)
+    dx = random.randint(-10, 10)
+    dy = random.randint(-10, 10)
+    red = random.randint(0, 255)
+    blue = random.randint(0, 255)
+    gree = random.randint(0, 255)
+    oval = canvas.create_oval(x - r, y - r, x + r, y + r, fill=gr.color_rgb(red, blue, gree))
+    ball = [x, y, r, dx, dy, oval]
     balls.append(ball)
 
 
 def tick_handler():
-    global ball, x, y, dx, dy, oval
+    global ball, x, y, r, dx, dy, oval
     for ball in balls:
-        x, y, dx, dy, oval = ball
-        # Отражение от края холста
-        if x < 0:
-            dx = -dx
-            x = 0
-        elif x > 600-40:
-            dx = -dx
-            x = 600-40
-        if y < 0:
-            dy = -dy
-            y = 0
-        elif y > 600-40:
-            dy = -dy
-            y = 600-40
-        x = x + dx
-        y = y + dy
+        x, y, r, dx, dy, oval = ball
+        x += dx
+        y += dy
         canvas.move(oval, dx, dy)
+
+        # Отражение от края холста
+        if x + r > width or x - r < 0:
+            dx = -dx
+        if y + r > height or y - r < 0:
+            dy = -dy
+
         ball[0] = x
         ball[1] = y
-        ball[2] = dx
-        ball[3] = dy
+        ball[2] = r
+        ball[3] = dx
+        ball[4] = dy
 
 
 def time_handler():
