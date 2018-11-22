@@ -40,12 +40,7 @@ def tick_handler():
         if y + r > height or y - r < 0:
             dy = -dy
 
-        ball[0] = x
-        ball[1] = y
-        ball[2] = r
-        ball[3] = dx
-        ball[4] = dy
-
+        ball[0], ball[1], ball[2], ball[3], ball[4] = x, y, r, dx, dy
 
 def time_handler():
     global freeze
