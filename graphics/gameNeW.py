@@ -12,35 +12,38 @@ height = 600
 
 balls = []
 
-for number in range(10):
-    x = random.randint(40, 560)
-    y = random.randint(40, 560)
-    r = random.randint(15, 40)
-    dx = random.randint(-10, 10)
-    dy = random.randint(-10, 10)
-    red = random.randint(0, 255)
-    blue = random.randint(0, 255)
-    gree = random.randint(0, 255)
-    oval = canvas.create_oval(x - r, y - r, x + r, y + r, fill=gr.color_rgb(red, blue, gree))
-    ball = [x, y, r, dx, dy, oval]
-    balls.append(ball)
+
+def generation_balls():
+    for number in range(10):
+        global ball, x, y, r, dx, dy, oval
+        x = random.randint(40, 560)
+        y = random.randint(40, 560)
+        r = random.randint(15, 40)
+        dx = random.randint(-10, 10)
+        dy = random.randint(-10, 10)
+        red = random.randint(0, 255)
+        blue = random.randint(0, 255)
+        gree = random.randint(0, 255)
+        oval = canvas.create_oval(x - r, y - r, x + r, y + r, fill=gr.color_rgb(red, blue, gree))
+        ball = [x, y, r, dx, dy, oval]
+        balls.append(ball)
 
 
-def tick_handler():
-    global ball, x, y, r, dx, dy, oval
-    for ball in balls:
-        x, y, r, dx, dy, oval = ball
+def flight_and_reflection():
+    for i in range(len(balls)):
+        global ball, x, y, r, dx, dy, oval
+        x, y, r, dx, dy, oval = balls[i]
         x += dx
         y += dy
         canvas.move(oval, dx, dy)
 
-        # Отражение от края холста
         if x + r > width or x - r < 0:
             dx = -dx
         if y + r > height or y - r < 0:
             dy = -dy
 
-        ball[0], ball[1], ball[2], ball[3], ball[4] = x, y, r, dx, dy
+        balls[i] = [x, y, r, dx, dy, oval]
+
 
 def time_handler():
     global freeze
@@ -49,7 +52,7 @@ def time_handler():
         print("Заморозка!")
         freeze = True
         return
-    tick_handler()
+    flight_and_reflection()
     sleep_dt = 700 - 69*speed
     root.after(sleep_dt, time_handler)
 
@@ -71,6 +74,7 @@ speed_scale.pack()
 speed_scale.set(1)
 freeze = False
 
+generation_balls()
 root.after(10, time_handler)
 speed_scale.bind("<Motion>", unfreezer)
 root.mainloop()
