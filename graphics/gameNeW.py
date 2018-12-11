@@ -13,68 +13,77 @@ height = 600
 balls = []
 
 
-def generation_balls():
-    for number in range(10):
-        global ball, x, y, r, dx, dy, oval
-        x = random.randint(40, 560)
-        y = random.randint(40, 560)
-        r = random.randint(15, 40)
-        dx = random.randint(-10, 10)
-        dy = random.randint(-10, 10)
-        red = random.randint(0, 255)
-        blue = random.randint(0, 255)
-        gree = random.randint(0, 255)
-        oval = canvas.create_oval(x - r, y - r, x + r, y + r, fill=gr.color_rgb(red, blue, gree))
-        ball = [x, y, r, dx, dy, oval]
-        balls.append(ball)
+class Ball:
+    def __init__(self):
+        self.x, self.y, self.r, self.dx, self.dy, self.red, self.blue, self.gree, self.oval = 0, 0, 0, 0, 0, 0, 0, 0, 0
+        self.oval = 0
+        self.ball = []
+
+    def generation_balls(self):
+        for number in range(10):
+            self.x = random.randint(40, 560)
+            self.y = random.randint(40, 560)
+            self.r = random.randint(15, 40)
+            self.dx = random.randint(-10, 10)
+            self.dy = random.randint(-10, 10)
+            self.red = random.randint(0, 255)
+            self.blue = random.randint(0, 255)
+            self.gree = random.randint(0, 255)
+            self.oval = canvas.create_oval(self.x - self.r, self.y - self.r, self.x + self.r, self.y + self.r,
+                                           fill=gr.color_rgb(self.red, self.blue, self.gree))
+            self.ball = [self.x, self.y, self.r, self.dx, self.dy, self.oval]
+            balls.append(self.ball)
+
+    def flight_and_reflection(self):
+        for i in range(len(balls)):
+            self.x, self.y, self.r, self.dx, self.dy, self.oval = balls[i]
+            self.x += self.dx
+            self.y += self.dy
+            canvas.move(self.oval, self.dx, self.dy)
+
+            if self.x + self.r > width or self.x - self.r < 0:
+                self.dx = -self.dx
+            if self.y + self.r > height or self.y - self.r < 0:
+                self.dy = -self.dy
+
+            balls[i] = [self.x, self.y, self.r, self.dx, self.dy, self.oval]
 
 
-def flight_and_reflection():
-    for i in range(len(balls)):
-        global ball, x, y, r, dx, dy, oval
-        x, y, r, dx, dy, oval = balls[i]
-        x += dx
-        y += dy
-        canvas.move(oval, dx, dy)
+def game():
+    ball = Ball()
+    freezer = False
+    global freezer
 
-        if x + r > width or x - r < 0:
-            dx = -dx
-        if y + r > height or y - r < 0:
-            dy = -dy
-
-        balls[i] = [x, y, r, dx, dy, oval]
-
-
-def time_handler():
-    global freeze
-    speed = speed_scale.get()
-    if speed == 0:
-        print("Заморозка!")
-        freeze = True
-        return
-    flight_and_reflection()
-    sleep_dt = 700 - 69*speed
-    root.after(sleep_dt, time_handler)
-
-
-def unfreezer(event):
-    global freeze
-    if freeze is True:
+    def time_handler():
+        global freezer
         speed = speed_scale.get()
-        if speed != 0:
-            freeze = False
-            root.after(0, time_handler)
+        if speed == 0:
+            print("Заморозка!")
+            freezer = True
+            return
+        ball.flight_and_reflection()
+        sleep_dt = 700 - 69 * speed
+        root.after(sleep_dt, time_handler)
+
+    def unfreeze(event):
+        global freezer
+        if freezer is True:
+            speed = speed_scale.get()
+            if speed != 0:
+                freezer = False
+                root.after(0, time_handler)
+
+    speed_scale = Scale(root, orient=HORIZONTAL, length=300,
+                        from_=0, to=10, tickinterval=1, resolution=1)
+    speed_scale.pack()
+
+    # Скорость = 1
+    speed_scale.set(1)
+
+    ball.generation_balls()
+    root.after(10, time_handler)
+    speed_scale.bind("<Motion>", unfreeze)
+    root.mainloop()
 
 
-speed_scale = Scale(root, orient=HORIZONTAL, length=300,
-                    from_=0, to=10, tickinterval=1, resolution=1)
-speed_scale.pack()
-
-# Скорость = 1
-speed_scale.set(1)
-freeze = False
-
-generation_balls()
-root.after(10, time_handler)
-speed_scale.bind("<Motion>", unfreezer)
-root.mainloop()
+game()
