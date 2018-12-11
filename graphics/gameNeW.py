@@ -7,6 +7,10 @@ root.geometry("600x600")
 canvas = Canvas(root)
 canvas.pack(fill=BOTH, expand=1)
 
+
+global freezer
+freezer = False
+Events = []
 width = 600
 height = 600
 
@@ -51,14 +55,11 @@ class Ball:
 
 def game():
     ball = Ball()
-    freezer = False
-    global freezer
 
     def time_handler():
         global freezer
         speed = speed_scale.get()
         if speed == 0:
-            print("Заморозка!")
             freezer = True
             return
         ball.flight_and_reflection()
@@ -66,6 +67,7 @@ def game():
         root.after(sleep_dt, time_handler)
 
     def unfreeze(event):
+        Events.append(event)
         global freezer
         if freezer is True:
             speed = speed_scale.get()
